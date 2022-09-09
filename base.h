@@ -1,5 +1,6 @@
 /* 3.1 Overall Memory Map */
 #define GPRAM     0xe000000
+#define GPROM_END 0x9ffffff
 #define GPROM     0x8000000
 #define OAM_END   0x70003ff
 #define OAM       0x7000000

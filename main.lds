@@ -2,6 +2,7 @@ OUTPUT_FORMAT("elf32-littlearm", "elf32-littlearm", "elf32-littlearm")
 OUTPUT_ARCH(arm)
 MEMORY
 {
+  sram  : ORIGIN = 0xe000000, LENGTH = 64K
   gprom : ORIGIN = 0x8000000, LENGTH = 32M
   iwram : ORIGIN = 0x3000000, LENGTH = 32K
   ewram : ORIGIN = 0x2000000, LENGTH = 256K
@@ -66,6 +67,17 @@ SECTIONS
 
   __bss_link_start = ADDR(bss);
   __bss_link_end = ADDR(bss) + SIZEOF(bss);
+
+  . = 0xe000000;
+
+  sram ALIGN(32) (NOLOAD) : SUBALIGN(4)
+  {
+    *(.sram)
+    . = (. + 0x1f) & ~0x1f;
+  } >sram
+
+  __sram_link_start = ADDR(sram);
+  __sram_link_end = ADDR(sram) + SIZEOF(sram);
 
   . = 0x2000000;
 
