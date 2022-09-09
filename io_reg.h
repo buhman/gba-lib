@@ -138,8 +138,8 @@ struct io_reg {
 };
 extern struct io_reg io_reg;
 
-#include <stddef.h>
-#include <assert.h>
+#define offsetof __builtin_offsetof
+#define static_assert _Static_assert
 static_assert(offsetof(struct io_reg, DISPCNT) == 0);
 static_assert(offsetof(struct io_reg, DISPSTAT) == 4);
 static_assert(offsetof(struct io_reg, VCOUNT) == 6);

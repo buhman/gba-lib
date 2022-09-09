@@ -1,5 +1,6 @@
-#include <assert.h>
 #include "base.h"
+
+#define static_assert _Static_assert
 
 struct pram {
   volatile unsigned short bg[16][16];
